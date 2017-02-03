@@ -1,0 +1,19 @@
+<div class="post-preview">
+	<div class="container">
+		<a href="<%- config.root %><%- item.path %>">
+			<span class="post-title">
+				<%- item.title || item.default_post_title || "Untitled" %>
+			</span>
+		</a>
+		<p class="post-meta">
+			<!-- Date and Author -->
+			<!-- <% if(item.author) { %>
+				Posted by <%- item.author %> on
+			<% } %> -->
+			<%= item.date.format(config.date_format) %>
+		</p>
+		<div class="post-inner">
+			<%- item.excerpt %>
+		</div>
+	</div>
+</div>

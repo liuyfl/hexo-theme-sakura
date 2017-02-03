@@ -1,0 +1,7 @@
+<!-- Main Content -->
+<div class="blog-mainindex">
+	<% page.posts.each(function(item){ %>
+		<%- partial('_partial/article-index',{item: item})%>
+	<% }); %>
+	<%- partial('_partial/pagination') %>
+</div>

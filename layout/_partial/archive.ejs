@@ -1,0 +1,57 @@
+<% var last_y; %>
+<% var last_m; %>
+<% page.posts.each(function(post,i){ %>
+<% var year = post.date.year(); %>
+<% var month = post.date.month(); %>
+<% if (last_y!=year){ %>
+	<% if (last_y != null){ %>
+		</div></div>
+	<% } %>
+	<% last_m=null; %>
+	<div class="archives-wrap" style="border-image:url(/images/prints.png) 30 30 round;">
+	<% if(last_m != month){ %>
+		<% if(last_m != null){ %>
+			</div></div>
+		<% } %>
+		<div class="archives-year-wrap">
+			<% if (last_y!=null){ %>
+				<span class="year-accordion" data-toggle="collapse" data-target="#archive-<%= year %>_<%= month %>"><%= date(post.date,'MMMM , YYYY') %></span>
+			<% } else { %>
+				<span class="year-accordion year-show" data-toggle="collapse" data-target="#archive-<%= year %>_<%= month %>"><%= date(post.date,'MMMM , YYYY') %></span>
+			<% } %>
+			<!--<a href="<%- url_for(config.archive_dir+'/'+year) %>" class="archive-year"><%= date(post.date,'MMMM , YYYY') %></a>-->
+		</div>
+		<% if (last_y!=null){ %>
+			<div class="archives collapse" id="archive-<%= year %>_<%= month %>">
+		<% } else { %>
+			<div class="archives collapse in" id="archive-<%= year %>_<%= month %>">
+		<% } %>
+	<% } %>
+	<% last_y=year; %>
+	<% last_m=month; %>
+<% } else { %>
+	<% if(last_m != month){ %>
+		<% if(last_m != null){ %>
+			</div>
+		<% } %>
+		<div class="archives-year-wrap">
+			<% if (last_m!=null){ %>
+				<span class="year-accordion" data-toggle="collapse" data-target="#archive-<%= year %>_<%= month %>"><%= date(post.date,'MMMM , YYYY') %></span>
+			<% } else { %>
+				<span class="year-accordion year-show" data-toggle="collapse" data-target="#archive-<%= year %>_<%= month %>"><%= date(post.date,'MMMM , YYYY') %></span>
+			<% } %>
+			<!--<a href="<%- url_for(config.archive_dir+'/'+year) %>" class="archive-year"><%= date(post.date,'MMMM , YYYY') %></a>-->
+		</div>
+		<% if (last_m!=null){ %>
+			<div class="archives collapse" id="archive-<%= year %>_<%= month %>">
+		<% } else { %>
+			<div class="archives collapse in" id="archive-<%= year %>_<%= month %>">
+		<% } %>
+	<% } %>
+	<% last_m=month; %>
+<% } %>
+ <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
+<% }) %>
+<% if (page.posts.length){ %>
+	</div></div>
+<% } %>

@@ -1,0 +1,36 @@
+<article class="article">
+	<div class="container">
+		<% if(page.path === 'tags/index.html'){ %>
+			<%- partial('tag') %>
+		<% } else { %>
+			<div class="article-title"><%- post.title %></div>
+			<div class="article-time"><%= date(post.date,'MMM D , YYYY') %></div> 
+			<div class="article-content">
+				<div class="article-inner">
+					<%- post.more %>
+					<div class="reward">
+						<button class="rewardbtn" onclick="var qr=document.getElementById('qr');if(qr.offsetHeight==0)qr.style.height='240px';else qr.style.height='0px';">赏</button>
+						<div class="qr" id="qr" style="height:0px;">
+							<div class="wechat"><img src="/images/wechat.jpg"></div>
+						</div>
+					</div>
+				</div>
+				<div class="article-actions">
+					<% if (post.next){ %>
+						<a class="article-action-btn article-action-prev" href="<%- url_for(post.next.path) %>">PREVIOUS</a>
+					<% } %>
+					<% if(post.prev) { %>
+						<a class="article-action-btn article-action-next" href="<%- url_for(post.prev.path) %>">NEXT</a>
+					<% } %>
+				</div>
+			</div>
+		<% } %>
+	</div>
+</article>
+<% if(page.path !== 'tags/index.html'){ %>
+	<% if(theme.disqus.on) { %>
+		<%- partial('disqus') %>
+	<% } else if(theme.duoshuo.on) { %>
+		<%- partial('duoshuo',{key: post.path,title: post.title,url: config.url+url_for(post.path)}) %>
+	<% } %>
+<% } %>

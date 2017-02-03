@@ -1,0 +1,10 @@
+#Header
+menu:
+  首页: /
+  归档: /archives
+  标签: /tags
+default_post_title: Untitled
+excerpt_link: Read More
+
+visit_counter:
+  on: true

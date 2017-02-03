@@ -1,0 +1,19 @@
+<!-- Navigation -->
+<%- css('css/font-awesome.css') %>
+<div class="blog-nav">
+	<div class="blog-nav-inner">
+		<div class="container">
+			<div class="blog-navbar">
+				<a href="/" class="logo"><img src="/images/logo.png"></a>
+				<nav class="navbar-nav">
+					<% for(var i in theme.menu){ %>
+						<li><a href="<%- url_for(theme.menu[i]) %>"><%= i %></a></li>
+					<% } %>
+					<li><a href="javascript:void(0)" class="popup-trigger"><i class="fa fa-search"></i></a></li>
+					<li><a href="javascript:void(0)" class="popup-flower"><i class="fa fa-eye"></i></a></li>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="blog-nav-bg" style="background-image:url('/images/bg3.jpg');"></div>
+</div>
